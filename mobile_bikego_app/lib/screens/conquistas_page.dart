@@ -23,26 +23,143 @@ class ConquistasPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Center(
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            width: 76,
+                            height: 76,
+                            padding: const EdgeInsets.all(3),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFF1C878),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200',
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: -2,
+                            bottom: -1,
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: const BoxDecoration(
+                                color: green,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 7),
+                    const Center(
+                      child: Text(
+                        'Toque para alterar sua foto de perfil',
+                        style: TextStyle(fontSize: 9, color: muted),
+                      ),
+                    ),
+                    const SizedBox(height: 27),
                     const Text(
-                      'Conquistas',
+                      'Seu impacto hoje',
                       style: TextStyle(
-                        fontSize: 19,
+                        fontSize: 11,
                         fontWeight: FontWeight.bold,
                         color: ink,
                       ),
                     ),
-                    const SizedBox(height: 5),
-                    const Text(
-                      'Continue pedalando e desbloqueie novas recompensas.',
-                      style: TextStyle(fontSize: 11, color: muted),
+                    const SizedBox(height: 8),
+                    const Row(
+                      children: [
+                        Expanded(
+                          child: ImpactCard(
+                            icon: Icons.eco_outlined,
+                            iconColor: green,
+                            iconBackground: Color(0xFFE8FAF3),
+                            value: '1,2 kg',
+                            label: 'de CO₂\nevita do',
+                          ),
+                        ),
+                        SizedBox(width: 7),
+                        Expanded(
+                          child: ImpactCard(
+                            icon: Icons.directions_car_outlined,
+                            iconColor: Color(0xFF159BD7),
+                            iconBackground: Color(0xFFEAF6FC),
+                            value: '1',
+                            label: 'viagem\nsubstituída',
+                          ),
+                        ),
+                        SizedBox(width: 7),
+                        Expanded(
+                          child: ImpactCard(
+                            icon: Icons.star_border,
+                            iconColor: Color(0xFFF2A51A),
+                            iconBackground: Color(0xFFFFF6E5),
+                            value: '+40',
+                            label: 'pontos\nganhos',
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 13),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text.rich(
+                          TextSpan(
+                            text: '🏅 ',
+                            children: [
+                              TextSpan(
+                                text: 'Progresso',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: ink,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          '240 / 300 pontos',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: green,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 9),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: const LinearProgressIndicator(
+                        value: 0.8,
+                        minHeight: 7,
+                        backgroundColor: Color(0xFFDDEFE8),
+                        valueColor: AlwaysStoppedAnimation<Color>(green),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 10,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(13),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withValues(alpha: 0.04),
@@ -54,69 +171,91 @@ class ConquistasPage extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
-                            width: 52,
-                            height: 52,
+                            width: 30,
+                            height: 30,
                             decoration: const BoxDecoration(
-                              color: Color(0xFFE8F8F1),
+                              color: Color(0xFFFFF7E7),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
-                              Icons.workspace_premium,
-                              color: green,
-                              size: 28,
+                              Icons.workspace_premium_outlined,
+                              color: Color(0xFFF2A51A),
+                              size: 16,
                             ),
                           ),
-                          const SizedBox(width: 12),
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Explorador Sustentável',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: ink,
+                          const SizedBox(width: 9),
+                          const Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Próxima recompensa',
+                                  style: TextStyle(fontSize: 9, color: muted),
                                 ),
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                '240 / 300 EcoPoints',
-                                style: TextStyle(fontSize: 10, color: muted),
-                              ),
-                            ],
+                                SizedBox(height: 2),
+                                Text(
+                                  'Explorador Sustentável',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: ink,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Text(
+                            '60 pts restantes',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontWeight: FontWeight.bold,
+                              color: muted,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 13),
                     const Text(
-                      'Suas conquistas',
+                      'Proporção de Pontos e Descontos:',
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: ink,
+                      ),
+                    ),
+                    const SizedBox(height: 7),
+                    const Text(
+                      '40,00 = 0,20 R\$',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: ink,
+                      ),
+                    ),
+                    const SizedBox(height: 25),
+                    const Text(
+                      'Saldo de Pontos:',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: ink,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'R\$ ********',
+                      style: TextStyle(
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                         color: ink,
                       ),
                     ),
                     const SizedBox(height: 9),
-                    const AchievementTile(
-                      icon: Icons.directions_bike,
-                      title: 'Primeiro deslocamento',
-                      description: 'Complete sua primeira viagem sustentável',
-                      completed: true,
-                    ),
-                    const SizedBox(height: 8),
-                    const AchievementTile(
-                      icon: Icons.eco_outlined,
-                      title: 'Amigo do planeta',
-                      description: 'Evite 10 kg de CO₂',
-                      completed: false,
-                    ),
-                    const SizedBox(height: 8),
-                    const AchievementTile(
-                      icon: Icons.route_outlined,
-                      title: 'Explorador de rotas',
-                      description: 'Conheça 5 rotas diferentes',
-                      completed: false,
+                    const Icon(
+                      Icons.money_off_csred_outlined,
+                      size: 18,
+                      color: green,
                     ),
                   ],
                 ),
@@ -177,6 +316,73 @@ class ConquistasPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ImpactCard extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final Color iconBackground;
+  final String value;
+  final String label;
+
+  const ImpactCard({
+    super.key,
+    required this.icon,
+    required this.iconColor,
+    required this.iconBackground,
+    required this.value,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 91,
+      padding: const EdgeInsets.all(9),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(13),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 9,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              color: iconBackground,
+              borderRadius: BorderRadius.circular(7),
+            ),
+            child: Icon(icon, color: iconColor, size: 14),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: ConquistasPage.ink,
+            ),
+          ),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 8,
+              height: 1.15,
+              color: ConquistasPage.muted,
+            ),
+          ),
+        ],
       ),
     );
   }
